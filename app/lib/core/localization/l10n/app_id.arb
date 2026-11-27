@@ -1,0 +1,57 @@
+{
+  "@@locale": "id",
+  "appTitle": "Ashvin FleetOS",
+  "appSubtitle": "Sistem Informasi dan Penjualan Rental Mobil Terintegrasi",
+
+  "navCatalog": "Katalog",
+  "navMyBookings": "Pesanan Saya",
+  "navFieldTasks": "Operasional Lapangan",
+  "navAdminDashboard": "Dasbor",
+  "navFleet": "Armada",
+  "navCorporate": "Korporasi B2B",
+  "navFinance": "Keuangan",
+  "navAuditLogs": "Log Audit",
+  "navSettings": "Pengaturan",
+
+  "roleCustomer": "Pelanggan",
+  "roleFieldStaff": "Staf Lapangan",
+  "roleAdmin": "Administrator",
+  "roleOwner": "Pemilik",
+
+  "statusAvailable": "Tersedia",
+  "statusBooked": "Dipesan",
+  "statusOnRental": "Sedang Disewa",
+  "statusMaintenanceRequired": "Perlu Servis",
+  "statusDecommissioned": "Tidak Beroperasi",
+
+  "packageSelfDrive": "Lepas Kunci",
+  "packageWithDriver": "Dengan Sopir",
+  "packageInTown": "Dalam Kota",
+  "packageOutOfTown": "Luar Kota",
+  "packageFuelExcluded": "BBM Luar (Exclude)",
+  "packageFuelIncluded": "BBM Dalam (Include)",
+
+  "btnBookNow": "Pesan Sekarang",
+  "btnConfirm": "Konfirmasi",
+  "btnCancel": "Batal",
+  "btnSave": "Simpan",
+  "btnCheckOut": "Serah Terima (Check-Out)",
+  "btnCheckIn": "Pengembalian (Check-In)",
+  "btnSignAgreement": "Tanda Tangan Digital",
+  "btnClearSignature": "Hapus TTD",
+
+  "labelOdometer": "Odometer (KM)",
+  "labelFuelLevel": "Level BBM",
+  "labelLicensePlate": "Plat Nomor",
+  "labelBrandModel": "Merek & Model",
+  "labelDailyRate": "Tarif Harian",
+  "labelDeposit": "Uang Jaminan (Deposit)",
+  "labelInspectionNotes": "Catatan Inspeksi",
+  "labelCustomerSignature": "Tanda Tangan Penyewa",
+  "labelStaffSignature": "Tanda Tangan Staf",
+
+  "msgOdometerValidation": "KM Akhir tidak boleh lebih kecil dari KM Awal",
+  "msgHandoverSuccess": "Serah terima unit berhasil disimpan",
+  "msgReturnSuccess": "Pengembalian unit berhasil dicatat",
+  "msgAuditProtected": "Log sistem bersifat permanen dan terlindungi secara atomik"
+}

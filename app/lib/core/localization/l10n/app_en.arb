@@ -1,0 +1,57 @@
+{
+  "@@locale": "en",
+  "appTitle": "Ashvin FleetOS",
+  "appSubtitle": "Integrated Car Rental Operating System",
+
+  "navCatalog": "Catalog",
+  "navMyBookings": "My Bookings",
+  "navFieldTasks": "Field Operations",
+  "navAdminDashboard": "Dashboard",
+  "navFleet": "Fleet",
+  "navCorporate": "Corporate B2B",
+  "navFinance": "Finance",
+  "navAuditLogs": "Audit Logs",
+  "navSettings": "Settings",
+
+  "roleCustomer": "Customer",
+  "roleFieldStaff": "Field Staff",
+  "roleAdmin": "Administrator",
+  "roleOwner": "Owner",
+
+  "statusAvailable": "Available",
+  "statusBooked": "Booked",
+  "statusOnRental": "On Rental",
+  "statusMaintenanceRequired": "Maintenance Required",
+  "statusDecommissioned": "Decommissioned",
+
+  "packageSelfDrive": "Self-Drive",
+  "packageWithDriver": "With Driver",
+  "packageInTown": "In-Town",
+  "packageOutOfTown": "Out-of-Town",
+  "packageFuelExcluded": "Fuel Excluded",
+  "packageFuelIncluded": "Fuel Included",
+
+  "btnBookNow": "Book Now",
+  "btnConfirm": "Confirm",
+  "btnCancel": "Cancel",
+  "btnSave": "Save",
+  "btnCheckOut": "Check-Out Handover",
+  "btnCheckIn": "Check-In Return",
+  "btnSignAgreement": "Sign Digital Agreement",
+  "btnClearSignature": "Clear Signature",
+
+  "labelOdometer": "Odometer (KM)",
+  "labelFuelLevel": "Fuel Level",
+  "labelLicensePlate": "License Plate",
+  "labelBrandModel": "Brand & Model",
+  "labelDailyRate": "Daily Rate",
+  "labelDeposit": "Security Deposit",
+  "labelInspectionNotes": "Inspection Notes",
+  "labelCustomerSignature": "Customer Signature",
+  "labelStaffSignature": "Staff Signature",
+
+  "msgOdometerValidation": "End KM cannot be less than start KM",
+  "msgHandoverSuccess": "Handover check-out completed successfully",
+  "msgReturnSuccess": "Return check-in completed successfully",
+  "msgAuditProtected": "System logs are append-only and cryptographically secured"
+}
