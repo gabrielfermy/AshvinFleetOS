@@ -1,0 +1,51 @@
+# Git Ignore for Ashvin FleetOS (AFOS)
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+.pub-cache/
+.pub/
+
+# Android
+app/android/app/debug/
+app/android/app/profile/
+app/android/app/release/
+app/android/key.properties
+app/android/**/*.keystore
+app/android/**/*.jks
+
+# iOS / macOS
+*.mode1v3
+*.mode2v3
+*.moved-aside
+*.pbxuser
+*.perspectivev3
+app/ios/Flutter/Generated.xcconfig
+app/ios/Flutter/flutter_export_environment.sh
+app/ios/Pods/
+app/ios/.symlinks/
+app/macos/Pods/
+app/macos/Flutter/ephemeral/
+
+# Windows
+app/windows/flutter/ephemeral/
+*.vcxproj.user
+
+# Supabase Local
+supabase/.temp/
+.branches/
+
+# Environment files & Secrets
+.env
+*.env.local
+*.pem
+*.key
+
+# IDE / System
+.vscode/
+.idea/
+*.DS_Store
+Thumbs.db
