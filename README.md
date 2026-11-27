@@ -93,7 +93,25 @@ flutter run -d android
 
 ---
 
-## 6. Documentation Navigation
+## 6. Multi-Tier Git Branching & Release Workflow
+
+```
+[feat/* or fix/*] ──► Pull Request ──► [staging] ──► Verified Release PR ──► [main (Production)]
+                                           ▲
+                                           │ (back-merge hotfixes)
+[hotfix/*] ─────────► Critical Patch ──────┴───────────────────────────────► [main (Production)]
+```
+
+- **`main` (Production)**: Deployable, battle-tested production releases. Direct pushes and direct PRs from feature branches are **strictly forbidden**.
+- **`staging` (Pre-Production)**: Active integration branch. All feature work must PR into `staging`.
+- **`feat/*`, `fix/*`, `chore/*`**: Isolated working branches branched from the latest updated branch (`staging` or dependency branch).
+- **Promotion to Production**: Only merged from `staging` $\rightarrow$ `main` after complete testing and verification.
+- **Hotfixes**: `hotfix/*` branches from `main`, patches critical issues, PRs into `main`, and back-merges into `staging`.
+- **Commit Standards**: Enforce [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:`, `chore:`).
+
+---
+
+## 7. Documentation Navigation
 Before proposing or writing application code, read the following specifications:
 - Read [AI Development Rules](file:///k:/Personal/AshvinFleetOS/AFOS-app/AI_RULES.md).
 - Read [Product Requirements Document (PRD)](file:///k:/Personal/AshvinFleetOS/AFOS-app/docs/01-product/PRD.md).

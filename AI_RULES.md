@@ -77,3 +77,25 @@
 - Whenever a database table, column, or relationship changes, the developer/AI **MUST** update `docs/02-architecture/DATABASE_SCHEMA.md`.
 - Whenever a business rule or validation formula changes, the developer/AI **MUST** update `docs/01-product/BUSINESS_RULES.md`.
 - Outdated documentation is treated as a critical bug.
+
+---
+
+## 7. Multi-Tier Git Branching & Release Governance
+1. **Branch Tier Hierarchy**:
+   - `main` (**Production**): Represents battle-tested, deployed production software.
+   - `staging` (**Pre-Production Integration**): Integration branch where completed features are assembled, tested against Docker Supabase and mock seed data, and reviewed for QA.
+   - `feat/*`, `fix/*`, `chore/*`, `docs/*` (**Working Branches**): Dedicated branches for discrete tasks or milestone items.
+2. **Strict Direct Push Prohibition**:
+   - **DIRECT PUSH TO `staging` OR `main` IS STRICTLY FORBIDDEN.**
+   - All code enters `staging` and `main` exclusively through Pull Requests (PRs).
+3. **Pull Request Routing Rules**:
+   - Working branches (`feat/*`, `fix/*`) **MUST** PR into `staging`. **NEVER directly into `main`**.
+   - Promotion to production occurs exclusively via a verified PR from `staging` $\rightarrow$ `main`.
+4. **Branch Creation Origin**:
+   - Every working branch must branch off from the latest updated branch—either latest `staging` or an active dependency branch when chaining dependent milestones.
+5. **Hotfix Workflow**:
+   - Critical production patches branch from `main` as `hotfix/*`, PR into `main`, and must immediately be back-merged into `staging` to prevent regression.
+6. **Commit Standard**:
+   - Enforce Conventional Commits: `feat:`, `fix:`, `docs:`, `refactor:`, `test:`, `chore:`.
+7. **No Force Push**:
+   - Force pushing (`git push -f`) to `staging` or `main` is strictly prohibited.
