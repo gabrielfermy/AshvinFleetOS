@@ -56,13 +56,18 @@
 ---
 
 ## 4. Code Standards & File Size Ceilings (< 500 Lines)
-1. **Strict File Size Limits**:
-   - All source files (Dart/Flutter, SQL scripts, edge functions):
-     - Methods/Functions: 5–30 lines (warning threshold > 50 lines).
-     - Classes/Components: 100–250 lines.
-     - **Hard ceiling strictly under 500 lines per file**.
-   - If a file approaches 400 lines, proactively decompose, extract, and refactor it into smaller modules following SRP and SOLID principles.
-2. **Modular Architecture & State Management**:
+1. **Zero-Tolerance for God Files & Hard 500-Line Ceiling**:
+   - **Strict Hard Ceiling**: 500 lines per file maximum. Any file exceeding this limit is treated as a critical code smell ("God file") requiring immediate extraction.
+   - **Warning Threshold**: Approaching 400 lines triggers mandatory refactoring before any new feature additions.
+   - **Granular Line Count Thresholds**:
+     - Methods / Functions: 5–20 lines (warning threshold > 30 lines).
+     - Classes / Components: 100–250 lines (warning threshold > 300 lines).
+     - Entire File: 100–300 lines ideal (**hard ceiling strictly under 500 lines**).
+2. **Clean Code, SRP, and DRY Protocol**:
+   - Strictly respect the **Single Responsibility Principle (SRP)**: every class, module, or component must own exactly one cohesive responsibility.
+   - Strictly respect **DRY (Don't Repeat Yourself)**: centralize shared styles, decorators, converters, and validations.
+   - **Structured & Tidy Extraction**: When decomposing an oversized file, place extracted subcomponents into tidy, dedicated sub-directories (`presentation/widgets/`, `domain/`, `data/`). Never create ad-hoc loose files.
+3. **Modular Architecture & State Management**:
    - Organize Flutter code by feature: `lib/features/<feature_name>/{data, domain, presentation}`.
    - Keep UI components free of business logic. Use Riverpod or Bloc consistently.
 

@@ -158,3 +158,4 @@ $$A_{\text{start}} < B_{\text{end}} \quad \text{AND} \quad A_{\text{end}} > B_{\
 | **ADL-004** | 2026-11-28 | Split customer names into First & Last name; enforce E.164 country dial codes for WAHA WhatsApp compatibility. | Section 8, `phone_input_field.dart`, `auth_modal.dart` |
 | **ADL-005** | 2026-11-28 | Simulated Email OTP step with Mailpit (:54324) fallback and confirm password validation. | Section 8, `auth_otp_step.dart`, `auth_modal.dart` |
 | **ADL-006** | 2026-11-28 | Mandatory Decision Tracking Protocol: all decisions affecting rules must immediately update `AI_RULES.md` and `BUSINESS_RULES.md` to prevent AI hallucination. | `AI_RULES.md` Sec 1 & 6 |
+| **ADL-007** | 2026-11-28 | Zero-tolerance God File prevention, strict <500 line ceiling, and mandatory SRP/DRY structured refactoring protocol across all codebase layers. | `AI_RULES.md` Sec 4, `.agents/rules/` |
