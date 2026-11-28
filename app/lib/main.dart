@@ -11,6 +11,7 @@ import 'features/auth/presentation/auth_modal.dart';
 import 'features/catalog/presentation/catalog_screen.dart';
 import 'features/catalog/domain/vehicle.dart';
 import 'features/booking/presentation/booking_modal.dart';
+import 'features/operations/presentation/operations_screen.dart';
 
 final localeProvider = StateProvider<Locale>((ref) => const Locale('id'));
 
@@ -159,24 +160,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   Widget _buildFieldOperationsView(AppLocalizations l10n, dynamic profile) {
-    return Center(
-      child: Card(
-        margin: const EdgeInsets.all(24),
-        child: Padding(
-          padding: const EdgeInsets.all(32),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(Icons.assignment, size: 48, color: AppTheme.primaryNavy),
-              const SizedBox(height: 16),
-              Text(l10n.navFieldTasks, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 8),
-              const Text('Mobile Check-Out / Check-In Inspection Console', style: TextStyle(color: Colors.grey)),
-            ],
-          ),
-        ),
-      ),
-    );
+    return const OperationsScreen();
   }
 
   Widget _buildDashboardView(AppLocalizations l10n, dynamic profile) {
