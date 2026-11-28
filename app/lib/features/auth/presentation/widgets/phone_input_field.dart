@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../../core/localization/l10n/app_localizations.dart';
+import '../../../../core/theme/app_theme.dart';
 
-/// Data model representing supported phone country codes
+/// Supported phone country dial codes
 class CountryDialCode {
   final String flag;
   final String dialCode;
@@ -21,7 +22,7 @@ const List<CountryDialCode> supportedDialCodes = [
   CountryDialCode('🇩🇪', '+49', 'DE'),
 ];
 
-/// Reusable Phone input field with country dial code dropdown
+/// Seamless, unified Phone input field with embedded country selector
 class PhoneInputField extends StatelessWidget {
   final TextEditingController controller;
   final String selectedDialCode;
@@ -40,52 +41,51 @@ class PhoneInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Country dial code dropdown container
-        Container(
-          height: 56,
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey.shade400),
-            borderRadius: BorderRadius.circular(4),
-          ),
-          child: DropdownButtonHideUnderline(
-            child: DropdownButton<String>(
-              value: selectedDialCode,
-              items: supportedDialCodes.map((c) {
-                return DropdownMenuItem<String>(
-                  value: c.dialCode,
-                  child: Text(
-                    '${c.flag} ${c.dialCode}',
-                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-                  ),
-                );
-              }).toList(),
-              onChanged: (val) {
-                if (val != null) onDialCodeChanged(val);
-              },
-            ),
+    return TextField(
+      controller: controller,
+      keyboardType: TextInputType.phone,
+      decoration: InputDecoration(
+        labelText: l10n.authPhone,
+        hintText: '812-3456-7890',
+        errorText: errorText,
+        prefixIcon: Padding(
+          padding: const EdgeInsets.only(left: 12, right: 8),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              DropdownButtonHideUnderline(
+                child: DropdownButton<String>(
+                  value: selectedDialCode,
+                  icon: const Icon(Icons.arrow_drop_down, size: 20, color: Color(0xFF64748B)),
+                  items: supportedDialCodes.map((c) {
+                    return DropdownMenuItem<String>(
+                      value: c.dialCode,
+                      child: Text(
+                        '${c.flag} ${c.dialCode}',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: AppTheme.primaryNavy,
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (val) {
+                    if (val != null) onDialCodeChanged(val);
+                  },
+                ),
+              ),
+              const SizedBox(width: 4),
+              Container(
+                height: 24,
+                width: 1,
+                color: const Color(0xFFCBD5E1),
+              ),
+              const SizedBox(width: 6),
+            ],
           ),
         ),
-        const SizedBox(width: 8),
-        // Local phone digits text field
-        Expanded(
-          child: TextField(
-            controller: controller,
-            keyboardType: TextInputType.phone,
-            decoration: InputDecoration(
-              labelText: l10n.authPhone,
-              hintText: '812-3456-7890',
-              errorText: errorText,
-              prefixIcon: const Icon(Icons.phone_outlined),
-              border: const OutlineInputBorder(),
-              contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-            ),
-          ),
-        ),
-      ],
+      ),
     );
   }
 }

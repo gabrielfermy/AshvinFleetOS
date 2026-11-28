@@ -57,7 +57,7 @@ class _AuthModalState extends ConsumerState<AuthModal> {
     final authState = ref.watch(authControllerProvider);
 
     return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 480),
         child: SingleChildScrollView(
@@ -113,14 +113,14 @@ class _AuthModalState extends ConsumerState<AuthModal> {
               Expanded(
                 child: TextField(
                   controller: _firstNameCtrl,
-                  decoration: InputDecoration(labelText: l10n.authFirstName, border: const OutlineInputBorder()),
+                  decoration: InputDecoration(labelText: l10n.authFirstName),
                 ),
               ),
               const SizedBox(width: 12),
               Expanded(
                 child: TextField(
                   controller: _lastNameCtrl,
-                  decoration: InputDecoration(labelText: l10n.authLastName, border: const OutlineInputBorder()),
+                  decoration: InputDecoration(labelText: l10n.authLastName),
                 ),
               ),
             ],
@@ -139,7 +139,6 @@ class _AuthModalState extends ConsumerState<AuthModal> {
           decoration: InputDecoration(
             labelText: l10n.authEmail,
             prefixIcon: const Icon(Icons.email_outlined),
-            border: const OutlineInputBorder(),
           ),
         ),
         const SizedBox(height: 12),
@@ -153,7 +152,6 @@ class _AuthModalState extends ConsumerState<AuthModal> {
               icon: Icon(_obscurePass ? Icons.visibility_off : Icons.visibility),
               onPressed: () => setState(() => _obscurePass = !_obscurePass),
             ),
-            border: const OutlineInputBorder(),
           ),
         ),
         if (_isSignUp) ...[
@@ -168,7 +166,6 @@ class _AuthModalState extends ConsumerState<AuthModal> {
                 icon: Icon(_obscureConfirmPass ? Icons.visibility_off : Icons.visibility),
                 onPressed: () => setState(() => _obscureConfirmPass = !_obscureConfirmPass),
               ),
-              border: const OutlineInputBorder(),
             ),
           ),
         ],

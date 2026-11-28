@@ -108,10 +108,7 @@ class _BookingModalState extends ConsumerState<BookingModal> {
               // Package selector
               DropdownButtonFormField<RentalPackage>(
                 initialValue: _selectedPackage,
-                decoration: InputDecoration(
-                  labelText: l10n.catalogSelectPackage,
-                  border: const OutlineInputBorder(),
-                ),
+                decoration: InputDecoration(labelText: l10n.catalogSelectPackage),
                 items: packages.map((pkg) {
                   return DropdownMenuItem(
                     value: pkg,
@@ -127,7 +124,6 @@ class _BookingModalState extends ConsumerState<BookingModal> {
                 decoration: InputDecoration(
                   labelText: l10n.bookingIdCard,
                   prefixIcon: const Icon(Icons.badge_outlined),
-                  border: const OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 12),
@@ -137,7 +133,6 @@ class _BookingModalState extends ConsumerState<BookingModal> {
                   decoration: InputDecoration(
                     labelText: l10n.bookingDriverLicense,
                     prefixIcon: const Icon(Icons.drive_eta_outlined),
-                    border: const OutlineInputBorder(),
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -147,7 +142,6 @@ class _BookingModalState extends ConsumerState<BookingModal> {
                 decoration: InputDecoration(
                   labelText: l10n.bookingEmergencyContact,
                   prefixIcon: const Icon(Icons.contact_phone_outlined),
-                  border: const OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 16),

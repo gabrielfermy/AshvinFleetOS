@@ -116,7 +116,6 @@ class _AuthOtpStepState extends State<AuthOtpStep> {
           decoration: InputDecoration(
             labelText: l10n.authOtpCode,
             counterText: '',
-            border: const OutlineInputBorder(),
           ),
         ),
         const SizedBox(height: 16),
