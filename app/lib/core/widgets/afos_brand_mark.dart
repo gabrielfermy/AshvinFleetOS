@@ -17,7 +17,7 @@ class AfosBrandMark extends StatelessWidget {
     this.showWordmark = true,
     this.compact = false,
     this.color,
-    this.useAssetImage = false,
+    this.useAssetImage = true,
   });
 
   @override

@@ -56,7 +56,7 @@ class AfosScaffold extends ConsumerWidget {
     if (isCompact) {
       return Scaffold(
         appBar: AppBar(
-          title: const AfosBrandMark(size: 26, compact: true),
+          title: const AfosBrandMark(size: 30, compact: false),
           actions: [
             _buildLocaleButton(),
             _buildAuthAction(context, ref, profile, l10n, compact: true),
@@ -180,8 +180,8 @@ class AfosScaffold extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 18),
-              child: AfosBrandMark(size: 30),
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              child: AfosBrandMark(size: 38),
             ),
             const Divider(height: 1, color: Color(0xFFE2E8F0)),
             Expanded(

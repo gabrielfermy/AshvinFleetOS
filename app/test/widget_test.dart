@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:afos_app/core/widgets/afos_brand_mark.dart';
 import 'package:afos_app/main.dart';
 
 void main() {
@@ -14,7 +15,7 @@ void main() {
     await tester.pumpAndSettle();
 
     // Verify initial Indonesian localization & catalog search
-    expect(find.text('Ashvin FleetOS'), findsWidgets);
+    expect(find.byType(AfosBrandMark), findsWidgets);
     expect(find.text('Katalog'), findsWidgets);
     expect(find.text('ID'), findsOneWidget);
 

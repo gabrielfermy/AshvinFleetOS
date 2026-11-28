@@ -7,11 +7,24 @@ import 'package:afos_app/core/widgets/afos_status_badge.dart';
 
 void main() {
   group('AFOS Brand Suite Widgets & Tokens Tests', () {
-    testWidgets('AfosBrandMark renders monogram and wordmark', (tester) async {
+    testWidgets('AfosBrandMark renders official asset image by default', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
             body: AfosBrandMark(size: 40),
+          ),
+        ),
+      );
+
+      expect(find.byType(AfosBrandMark), findsOneWidget);
+      expect(find.byType(Image), findsOneWidget);
+    });
+
+    testWidgets('AfosBrandMark vector fallback renders monogram and wordmark', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: AfosBrandMark(size: 40, useAssetImage: false),
           ),
         ),
       );
@@ -22,7 +35,7 @@ void main() {
       expect(find.text('AFOS'), findsOneWidget);
     });
 
-    testWidgets('AfosBrandMark compact mode renders AFOS monogram', (tester) async {
+    testWidgets('AfosBrandMark compact mode renders app logo asset', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
@@ -31,7 +44,7 @@ void main() {
         ),
       );
 
-      expect(find.text('AFOS'), findsOneWidget);
+      expect(find.byType(Image), findsOneWidget);
     });
 
     testWidgets('AfosStatusBadge renders vehicle status correctly', (tester) async {
