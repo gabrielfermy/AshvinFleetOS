@@ -133,13 +133,27 @@ class _AuthModalState extends ConsumerState<AuthModal> {
                                 phoneNumber: _phoneCtrl.text,
                                 nationality: _nationality,
                               );
-                          if (ok && mounted) Navigator.of(context).pop();
+                          if (ok && mounted) {
+                            Navigator.of(context).pop();
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('${l10n.authLoggedInAs}: ${_nameCtrl.text.isNotEmpty ? _nameCtrl.text : _emailCtrl.text}'),
+                              ),
+                            );
+                          }
                         } else {
                           final ok = await ref.read(authControllerProvider.notifier).signIn(
                                 _emailCtrl.text,
                                 _passCtrl.text,
                               );
-                          if (ok && mounted) Navigator.of(context).pop();
+                          if (ok && mounted) {
+                            Navigator.of(context).pop();
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('${l10n.authLoggedInAs}: ${_emailCtrl.text}'),
+                              ),
+                            );
+                          }
                         }
                       },
                 child: authState.isLoading

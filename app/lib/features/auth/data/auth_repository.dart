@@ -19,14 +19,35 @@ class AuthRepository {
     final user = currentAuthUser;
     if (client == null || user == null) return null;
 
-    final data = await client
-        .from('user_profiles')
-        .select()
-        .eq('id', user.id)
-        .maybeSingle();
+    try {
+      final data = await client
+          .from('user_profiles')
+          .select()
+          .eq('id', user.id)
+          .maybeSingle();
 
-    if (data == null) return null;
-    return UserProfile.fromJson(data);
+      if (data != null) {
+        return UserProfile.fromJson(data);
+      }
+    } catch (_) {}
+
+    // Self-healing fallback: construct profile from auth metadata
+    final meta = user.userMetadata ?? {};
+    final fallbackProfile = UserProfile(
+      id: user.id,
+      role: (meta['role'] as String?) ?? 'CUSTOMER',
+      fullName: (meta['full_name'] as String?) ??
+          (user.email?.split('@').first ?? 'Customer'),
+      phoneNumber: (meta['phone_number'] as String?) ?? '',
+      nationality: (meta['nationality'] as String?) ?? 'ID',
+      preferredLocale: 'id',
+    );
+
+    try {
+      await client.from('user_profiles').upsert(fallbackProfile.toJson());
+    } catch (_) {}
+
+    return fallbackProfile;
   }
 
   Future<AuthResponse> signIn({
@@ -57,18 +78,26 @@ class AuthRepository {
     final res = await client.auth.signUp(
       email: email.trim(),
       password: password,
-      data: {'full_name': fullName},
-    );
-
-    if (res.user != null) {
-      await client.from('user_profiles').upsert({
-        'id': res.user!.id,
-        'role': 'CUSTOMER',
+      data: {
         'full_name': fullName,
         'phone_number': phoneNumber,
         'nationality': nationality,
-        'preferred_locale': nationality == 'ID' ? 'id' : 'en',
-      });
+      },
+    );
+
+    if (res.user != null) {
+      try {
+        await client.from('user_profiles').upsert({
+          'id': res.user!.id,
+          'role': 'CUSTOMER',
+          'full_name': fullName,
+          'phone_number': phoneNumber,
+          'nationality': nationality,
+          'preferred_locale': nationality == 'ID' ? 'id' : 'en',
+        });
+      } catch (_) {
+        // Trigger on DB already handles profile creation
+      }
     }
 
     return res;
