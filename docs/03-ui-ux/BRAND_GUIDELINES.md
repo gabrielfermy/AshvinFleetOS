@@ -86,11 +86,30 @@
 
 ---
 
-## 5. Brand Mark & Iconography
+## 5. Brand Mark & Official Visual Assets
 
-### 5.1. The AF Monogram
-- Combines the silhouette of an open highway/route ribbon with a protective shield geometry, forming the intertwined letters **A** and **F**.
-- Represents safe journeys, operational security, and precision fleet tracking.
+### 5.1. The Official Twin Horses (Kuda Kembar) Identity & AFOS Wordmark
+- **The Twin Horses Emblem**: Dua siluet kuda yang berlari gagah berdampingan:
+  - **Kuda Pertama (Warm Amber `#D97706`)**: Melambangkan energi, keramahan pariwisata Yogyakarta, dan kehangatan layanan retail B2C.
+  - **Kuda Kedua (Jogja Teal `#0E7C7B`)**: Melambangkan presisi teknologi, ketangguhan operasional armada, dan kehandalan kontrak korporat B2B.
+  - **Garis Pijakan Horisontal (Ground Line)**: Fondasi yang kokoh, stabil, dan teratur.
+- **AFOS Wordmark**:
+  - **AFOS**: Tipografi sans-serif geometris tegas tebal berwarna *Ashvin Deep Navy* (`#0F2537`).
+  - **Ashvin FleetOS**: Sub-heading dengan aksen warna harmonis: *Ashvin* (Deep Navy), *Fleet* (Warm Amber), *OS* (Jogja Teal).
+- **Official App Icon**: Kanvas penuh *Ashvin Deep Navy* (`#0F2939`) dengan lambang kuda kembar yang berukuran penuh, tebal, dan proporsional mendekati batas tepian (*full-bleed*, tanpa bingkai putih luar) agar menonjol di launcher mobile, browser favicon, dan desktop taskbar.
+
+### 5.2. Standard Asset Inventory & Directory Structure
+Seluruh aset resmi telah diproses dan disimpan di dalam aplikasi:
+- `app/assets/images/afos_app_logo.png`: Master icon resolusi tinggi (1024x1024) full-bleed.
+- `app/assets/images/afos_app_logo_512.png`: App icon 512x512 untuk splash screen & avatar brand.
+- `app/assets/images/afos_app_logo_transparent.png`: Lambang kuda kembar dengan latar belakang transparan.
+- `app/assets/images/afos_brand_full.png`: Komposisi penuh lambang kuda + wordmark AFOS pada latar belakang terang.
+- `app/assets/images/afos_brand_transparent.png`: Komposisi penuh lambang kuda + wordmark AFOS berlatar transparan (untuk header & sidebar).
+- `app/web/favicon.png`: Favicon web browser 64x64 / 32x32.
+- `app/web/icons/Icon-192.png` & `Icon-512.png`: PWA & mobile web shortcut icons.
+
+### 5.3. Vector AF Monogram Fallback
+- Monogram vektor AF (jalur rute jalan raya + kontur perisai keamanan) dipertahankan sebagai *dynamic programmatic fallback* pada `AfosBrandMark` ketika aset gambar sedang dimuat atau pada unit testing headless.
 
 ### 5.2. Rental Domain Iconography (Line & Duotone)
 1. **Odometer & Mileage**: Speedometer gauge icon for recording start/end KM.

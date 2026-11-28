@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import '../theme/afos_colors.dart';
 import '../theme/afos_typography.dart';
 
-/// Official Vector Brand Mark for Ashvin FleetOS (AFOS)
-/// Renders the AF Monogram (Route ribbon + Shield security contour)
+/// Official Brand Mark for Ashvin FleetOS (AFOS)
+/// Renders the official Twin Horses (Kuda Kembar) logo or AF Monogram
 class AfosBrandMark extends StatelessWidget {
   final double size;
   final bool showWordmark;
   final bool compact;
   final Color? color;
+  final bool useAssetImage;
 
   const AfosBrandMark({
     super.key,
@@ -16,10 +17,45 @@ class AfosBrandMark extends StatelessWidget {
     this.showWordmark = true,
     this.compact = false,
     this.color,
+    this.useAssetImage = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    if (useAssetImage) {
+      if (compact) {
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(size * 0.22),
+          child: Image.asset(
+            'assets/images/afos_app_logo_512.png',
+            width: size,
+            height: size,
+            fit: BoxFit.cover,
+            errorBuilder: (_, __, ___) => _buildVectorFallback(),
+          ),
+        );
+      }
+      if (showWordmark) {
+        return Image.asset(
+          'assets/images/afos_brand_transparent.png',
+          height: size,
+          fit: BoxFit.contain,
+          errorBuilder: (_, __, ___) => _buildVectorFallback(),
+        );
+      }
+      return Image.asset(
+        'assets/images/afos_app_logo_transparent.png',
+        width: size,
+        height: size,
+        fit: BoxFit.contain,
+        errorBuilder: (_, __, ___) => _buildVectorFallback(),
+      );
+    }
+
+    return _buildVectorFallback();
+  }
+
+  Widget _buildVectorFallback() {
     final monogram = CustomPaint(
       size: Size(size, size),
       painter: _AfMonogramPainter(
@@ -196,5 +232,43 @@ class _AfMonogramPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant _AfMonogramPainter oldDelegate) {
     return oldDelegate.primaryColor != primaryColor || oldDelegate.accentColor != accentColor;
+  }
+}
+
+/// Official bitmap branding image widget for Ashvin FleetOS (AFOS)
+/// Renders the official Twin Horses (Kuda Kembar) logo and wordmark
+class AfosBrandImage extends StatelessWidget {
+  final double height;
+  final bool compact;
+  final BoxFit fit;
+
+  const AfosBrandImage({
+    super.key,
+    this.height = 36.0,
+    this.compact = false,
+    this.fit = BoxFit.contain,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (compact) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(height * 0.22),
+        child: Image.asset(
+          'assets/images/afos_app_logo_512.png',
+          width: height,
+          height: height,
+          fit: BoxFit.cover,
+          errorBuilder: (_, __, ___) => AfosBrandMark(size: height, compact: true, showWordmark: false),
+        ),
+      );
+    }
+
+    return Image.asset(
+      'assets/images/afos_brand_transparent.png',
+      height: height,
+      fit: fit,
+      errorBuilder: (_, __, ___) => AfosBrandMark(size: height, compact: false),
+    );
   }
 }

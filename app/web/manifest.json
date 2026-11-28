@@ -1,11 +1,11 @@
 {
-    "name": "app",
-    "short_name": "app",
+    "name": "Ashvin FleetOS (AFOS)",
+    "short_name": "AFOS",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#0F2537",
+    "theme_color": "#0F2537",
+    "description": "Sistem Operasi Rental Mobil yang Rapi, Aman, dan Terukur.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
