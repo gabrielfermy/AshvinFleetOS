@@ -8,9 +8,13 @@
 1. **Mandatory Documentation Verification Before Coding**:
    - The AI agent MUST NOT write, generate, or modify frontend code, backend code, database migrations, or configuration files without verifying the specifications in `docs/01-product/`, `docs/02-architecture/`, and `docs/03-ui-ux/`.
    - If user prompts contradict documented rules, prompt the user for clarification and update the relevant documentation first (*Documentation-First*).
-2. **Strict Adherence to MVP Scope**:
+2. **Decision Tracking & Rule Synchronization Mandate (Zero Hallucination)**:
+   - Any architectural, UX, database, or workflow decision worth documenting **MUST** be documented immediately in the corresponding files in `docs/`.
+   - Any decision that modifies, refines, or introduces operational rules **MUST** update `AI_RULES.md` and `docs/01-product/BUSINESS_RULES.md` in the exact same turn/commit.
+   - Leaving architectural or design decisions as undocumented "implicit code-only knowledge" is strictly forbidden to prevent context drift and AI hallucinations in subsequent turns or sessions.
+3. **Strict Adherence to MVP Scope**:
    - Never implement features categorized under **Phase 2 / Backlog** in `docs/01-product/MVP_SCOPE.md` (e.g., real-time background GPS tracking of renter mobile phones, automated foreign payment gateways, automated dynamic pricing algorithms, etc.).
-3. **Consistent Naming & Terminology**:
+4. **Consistent Naming & Terminology**:
    - Official system name: **Ashvin FleetOS**.
    - Official acronym: **AFOS**.
    - Do not invent alternative names (e.g., AFO, FleetAshvin).
@@ -76,7 +80,8 @@
 ## 6. Documentation Synchronization Protocol
 - Whenever a database table, column, or relationship changes, the developer/AI **MUST** update `docs/02-architecture/DATABASE_SCHEMA.md`.
 - Whenever a business rule or validation formula changes, the developer/AI **MUST** update `docs/01-product/BUSINESS_RULES.md`.
-- Outdated documentation is treated as a critical bug.
+- Whenever an architectural or design decision is made (e.g., auth workflows, OTP simulation, name splitting, WAHA integration, E.164 phone formats), the decision **MUST** be recorded in the Decision Log of `docs/01-product/BUSINESS_RULES.md` and synced into `AI_RULES.md`.
+- Outdated documentation is treated as a critical bug and a primary source of AI hallucination.
 
 ---
 

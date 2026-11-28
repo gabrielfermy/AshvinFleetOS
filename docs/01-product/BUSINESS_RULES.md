@@ -123,3 +123,38 @@ $$A_{\text{start}} < B_{\text{end}} \quad \text{AND} \quad A_{\text{end}} > B_{\
 1. **Late Return (Overtime)**: Grace period up to 30 minutes free. 31–120 minutes charged at $10\%$ of vehicle daily rate per hour. $> 120$ minutes charged as 1 full additional day.
 2. **Fuel Shortage**: Missing fuel bars converted to currency plus a Rp25,000 refueling administrative fee.
 3. **Physical Damage Claims**: Deducted directly from security deposit (B2C) or billed to consolidated corporate invoice (B2B).
+
+---
+
+## 8. User Onboarding & Authentication Rules
+
+### 8.1. Customer Identity & Name Separation
+- **First Name & Last Name Split**: Registration forms collect `first_name` and `last_name` separately. The database stores the combined legal `full_name` in `user_profiles` while application models expose `.firstName` and `.lastName` for personalized customer communications, notifications, and rental contract formatting.
+
+### 8.2. International Phone Number Format (E.164)
+- **Country Dial Code Enforcement**: Phone inputs must require a country code selector (default `+62` for Indonesia).
+- **Format Normalization**: All stored and transmitted phone numbers must be formatted to standard **E.164** (e.g., `+6281234567890`), stripping leading zeros from local inputs.
+- **WhatsApp Gateway Readiness**: The E.164 phone standard is mandatory to enable zero-transformation delivery to self-hosted WhatsApp gateways (such as WAHA) and official WhatsApp Business APIs.
+
+### 8.3. Password & Security Policies
+- **Minimum Length**: Minimum 6 alphanumeric characters.
+- **Confirmation Verification**: Frontend must enforce equality matching between `password` and `confirm_password` before submission.
+- **Visibility Control**: Passwords must offer obscured/plain text toggles on both fields.
+
+### 8.4. Two-Step Email OTP Verification
+- **Simulated OTP Flow**: On registration, users enter a 6-digit verification code. Until production SMTP is configured, local development accepts simulated OTP (`123456`) and routes real outbound verification emails to the local Mailpit instance (`http://localhost:54324`).
+- **Automatic Profile Trigger**: Supabase GoTrue `auth.users` insertions automatically execute the `on_auth_user_created` PostgreSQL trigger with `SECURITY DEFINER` to populate `public.user_profiles` with default role `CUSTOMER`.
+- **Self-Healing Profile Fallback**: If a profile record is momentarily inaccessible, the client-side authentication layer reconstructs profile state from GoTrue JWT metadata to prevent unauthenticated UI locks.
+
+---
+
+## 9. Architectural Decision Log (ADL)
+
+| Decision ID | Date | Summary of Decision & Rationale | Affected Rules / Files |
+|---|---|---|---|
+| **ADL-001** | 2026-11-27 | Supabase local Docker isolation on non-standard ports (54321-54329) to avoid collision with port 5432. | `app_config.dart`, `supabase/` |
+| **ADL-002** | 2026-11-27 | Flutter SDK and caches strictly isolated on `D:\DevTools` to protect small `C:` SSD (free space < 15 GB). | Environment config, Build scripts |
+| **ADL-003** | 2026-11-28 | Automatic DB trigger `on_auth_user_created` + RLS `INSERT` policy for `user_profiles`. | `20261128000001_auth_profile_trigger.sql` |
+| **ADL-004** | 2026-11-28 | Split customer names into First & Last name; enforce E.164 country dial codes for WAHA WhatsApp compatibility. | Section 8, `phone_input_field.dart`, `auth_modal.dart` |
+| **ADL-005** | 2026-11-28 | Simulated Email OTP step with Mailpit (:54324) fallback and confirm password validation. | Section 8, `auth_otp_step.dart`, `auth_modal.dart` |
+| **ADL-006** | 2026-11-28 | Mandatory Decision Tracking Protocol: all decisions affecting rules must immediately update `AI_RULES.md` and `BUSINESS_RULES.md` to prevent AI hallucination. | `AI_RULES.md` Sec 1 & 6 |
