@@ -164,6 +164,138 @@ abstract class AppLocalizations {
   /// **'Settings'**
   String get navSettings;
 
+  /// No description provided for @authSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign In'**
+  String get authSignIn;
+
+  /// No description provided for @authSignUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get authSignUp;
+
+  /// No description provided for @authSignOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Out'**
+  String get authSignOut;
+
+  /// No description provided for @authEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Address'**
+  String get authEmail;
+
+  /// No description provided for @authPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get authPassword;
+
+  /// No description provided for @authFullName.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Name'**
+  String get authFullName;
+
+  /// No description provided for @authPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get authPhone;
+
+  /// No description provided for @authNationality.
+  ///
+  /// In en, this message translates to:
+  /// **'Nationality'**
+  String get authNationality;
+
+  /// No description provided for @authQuickDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Demo Logins'**
+  String get authQuickDemo;
+
+  /// No description provided for @authNoAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account? Register'**
+  String get authNoAccount;
+
+  /// No description provided for @authHaveAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account? Sign In'**
+  String get authHaveAccount;
+
+  /// No description provided for @authLoggedInAs.
+  ///
+  /// In en, this message translates to:
+  /// **'Logged in as'**
+  String get authLoggedInAs;
+
+  /// No description provided for @catalogAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get catalogAll;
+
+  /// No description provided for @catalogTransmission.
+  ///
+  /// In en, this message translates to:
+  /// **'Transmission'**
+  String get catalogTransmission;
+
+  /// No description provided for @catalogManual.
+  ///
+  /// In en, this message translates to:
+  /// **'Manual'**
+  String get catalogManual;
+
+  /// No description provided for @catalogAutomatic.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatic'**
+  String get catalogAutomatic;
+
+  /// No description provided for @catalogCapacity.
+  ///
+  /// In en, this message translates to:
+  /// **'Capacity'**
+  String get catalogCapacity;
+
+  /// No description provided for @catalogSeats.
+  ///
+  /// In en, this message translates to:
+  /// **'Seats'**
+  String get catalogSeats;
+
+  /// No description provided for @catalogPerDay.
+  ///
+  /// In en, this message translates to:
+  /// **'/ day'**
+  String get catalogPerDay;
+
+  /// No description provided for @catalogSelectPackage.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Package'**
+  String get catalogSelectPackage;
+
+  /// No description provided for @catalogNoVehicles.
+  ///
+  /// In en, this message translates to:
+  /// **'No vehicles found for the selected criteria'**
+  String get catalogNoVehicles;
+
+  /// No description provided for @catalogSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Search vehicles by brand or model...'**
+  String get catalogSearch;
+
   /// No description provided for @roleCustomer.
   ///
   /// In en, this message translates to:
@@ -253,6 +385,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Fuel Included'**
   String get packageFuelIncluded;
+
+  /// No description provided for @bookingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reserve Vehicle'**
+  String get bookingTitle;
+
+  /// No description provided for @bookingStartDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Date & Time'**
+  String get bookingStartDate;
+
+  /// No description provided for @bookingEndDate.
+  ///
+  /// In en, this message translates to:
+  /// **'End Date & Time'**
+  String get bookingEndDate;
+
+  /// No description provided for @bookingDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Duration'**
+  String get bookingDuration;
+
+  /// No description provided for @bookingIdCard.
+  ///
+  /// In en, this message translates to:
+  /// **'ID Card / Passport Number'**
+  String get bookingIdCard;
+
+  /// No description provided for @bookingDriverLicense.
+  ///
+  /// In en, this message translates to:
+  /// **'Driver License (SIM A / IDP)'**
+  String get bookingDriverLicense;
+
+  /// No description provided for @bookingEmergencyContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency Contact Name & Phone'**
+  String get bookingEmergencyContact;
+
+  /// No description provided for @bookingUploadIdCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload ID Card / Passport'**
+  String get bookingUploadIdCard;
+
+  /// No description provided for @bookingUploadLicense.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload Driver License'**
+  String get bookingUploadLicense;
+
+  /// No description provided for @bookingDepositNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Refundable security deposit is held upon handover'**
+  String get bookingDepositNotice;
+
+  /// No description provided for @bookingSubmitSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking submitted successfully!'**
+  String get bookingSubmitSuccess;
+
+  /// No description provided for @bookingSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Rental Cost Summary'**
+  String get bookingSummary;
+
+  /// No description provided for @bookingTotalFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Rental Fee'**
+  String get bookingTotalFee;
+
+  /// No description provided for @bookingDownPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Down Payment (30%)'**
+  String get bookingDownPayment;
 
   /// No description provided for @btnBookNow.
   ///
