@@ -4,7 +4,18 @@
 -- Purpose: Automatic profile creation trigger on auth.users and INSERT RLS policy
 -- ============================================================================
 
--- 1. Add INSERT policy for user_profiles so authenticated users can upsert their own profile
+-- 1. Helper Function: Get Current User Role (Safe Search Path & Explicit Type)
+CREATE OR REPLACE FUNCTION public.auth_user_role()
+RETURNS public.user_role_enum
+LANGUAGE sql
+STABLE
+SECURITY DEFINER
+SET search_path = public, pg_temp
+AS $$
+    SELECT role FROM public.user_profiles WHERE id = auth.uid();
+$$;
+
+-- 2. Add INSERT policy for user_profiles so authenticated users can upsert their own profile
 DO $$
 BEGIN
     IF NOT EXISTS (
@@ -12,13 +23,17 @@ BEGIN
         WHERE tablename = 'user_profiles' AND policyname = 'Profiles insertable by self or admin/owner'
     ) THEN
         CREATE POLICY "Profiles insertable by self or admin/owner" ON public.user_profiles
-        FOR INSERT WITH CHECK (auth.uid() = id OR auth_user_role() IN ('ADMIN', 'OWNER'));
+        FOR INSERT WITH CHECK (auth.uid() = id OR public.auth_user_role() IN ('ADMIN', 'OWNER'));
     END IF;
 END $$;
 
--- 2. Trigger Function: automatically create or update user_profiles upon signup
+-- 3. Trigger Function: automatically create or update user_profiles upon signup
 CREATE OR REPLACE FUNCTION public.handle_new_user()
-RETURNS trigger AS $$
+RETURNS trigger
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public, pg_temp
+AS $$
 BEGIN
   INSERT INTO public.user_profiles (
     id,
@@ -32,12 +47,12 @@ BEGIN
     new.id,
     COALESCE(
       CASE 
-        WHEN new.raw_user_meta_data->>'role' = 'ADMIN' THEN 'ADMIN'::user_role_enum
-        WHEN new.raw_user_meta_data->>'role' = 'OWNER' THEN 'OWNER'::user_role_enum
-        WHEN new.raw_user_meta_data->>'role' = 'FIELD_STAFF' THEN 'FIELD_STAFF'::user_role_enum
-        ELSE 'CUSTOMER'::user_role_enum
+        WHEN new.raw_user_meta_data->>'role' = 'ADMIN' THEN 'ADMIN'::public.user_role_enum
+        WHEN new.raw_user_meta_data->>'role' = 'OWNER' THEN 'OWNER'::public.user_role_enum
+        WHEN new.raw_user_meta_data->>'role' = 'FIELD_STAFF' THEN 'FIELD_STAFF'::public.user_role_enum
+        ELSE 'CUSTOMER'::public.user_role_enum
       END,
-      'CUSTOMER'::user_role_enum
+      'CUSTOMER'::public.user_role_enum
     ),
     COALESCE(NULLIF(new.raw_user_meta_data->>'full_name', ''), split_part(new.email, '@', 1)),
     COALESCE(new.raw_user_meta_data->>'phone_number', ''),
@@ -51,7 +66,7 @@ BEGIN
 
   RETURN new;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$;
 
 -- 3. Attach trigger to auth.users
 DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
