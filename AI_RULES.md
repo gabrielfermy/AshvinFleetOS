@@ -7,6 +7,7 @@
 ## 1. Fundamental Principles (Documentation-Driven Development)
 1. **Mandatory Documentation Verification Before Coding**:
    - The AI agent MUST NOT write, generate, or modify frontend code, backend code, database migrations, or configuration files without verifying the specifications in `docs/01-product/`, `docs/02-architecture/`, and `docs/03-ui-ux/`.
+   - All frontend widgets, themes, colors, and typography MUST strictly adhere to the design tokens and specifications defined in `docs/03-ui-ux/BRAND_GUIDELINES.md`.
    - If user prompts contradict documented rules, prompt the user for clarification and update the relevant documentation first (*Documentation-First*).
 2. **Decision Tracking & Rule Synchronization Mandate (Zero Hallucination)**:
    - Any architectural, UX, database, or workflow decision worth documenting **MUST** be documented immediately in the corresponding files in `docs/`.

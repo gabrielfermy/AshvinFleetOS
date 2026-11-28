@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/localization/l10n/app_localizations.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../core/widgets/afos_status_badge.dart';
 import '../../../../core/widgets/responsive_layout.dart';
 import '../domain/vehicle.dart';
 import 'catalog_controller.dart';
@@ -128,14 +129,20 @@ class CatalogScreen extends ConsumerWidget {
                         vehicle.displayName,
                         style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                       ),
+                      const SizedBox(height: 2),
                       Text(
                         vehicle.licensePlate,
-                        style: const TextStyle(fontSize: 12, color: Colors.grey),
+                        style: AfosTypography.licensePlate,
                       ),
                     ],
                   ),
                 ),
-                _buildStatusBadge(vehicle.status, l10n),
+                AfosStatusBadge.vehicleStatus(
+                  vehicle.status,
+                  localizedLabel: vehicle.status == 'AVAILABLE'
+                      ? l10n.statusAvailable
+                      : (vehicle.status == 'ON_RENTAL' ? l10n.statusOnRental : l10n.statusBooked),
+                ),
               ],
             ),
             Wrap(
@@ -144,7 +151,7 @@ class CatalogScreen extends ConsumerWidget {
               children: [
                 _specPill(Icons.airline_seat_recline_normal, '${vehicle.seatingCapacity} ${l10n.catalogSeats}'),
                 _specPill(Icons.settings, vehicle.transmission),
-                _specPill(Icons.speed, '${vehicle.currentOdometerKm} KM'),
+                _specPill(Icons.speed, '${vehicle.currentOdometerKm} KM', isMono: true),
               ],
             ),
             Row(
@@ -158,7 +165,7 @@ class CatalogScreen extends ConsumerWidget {
                       const Text('Mulai dari', style: TextStyle(fontSize: 10, color: Colors.grey)),
                       Text(
                         'Rp 350.000 ${l10n.catalogPerDay}',
-                        style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w800, color: AppTheme.accentTeal),
+                        style: AfosTypography.currency.copyWith(fontSize: 13),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -181,7 +188,7 @@ class CatalogScreen extends ConsumerWidget {
     );
   }
 
-  Widget _specPill(IconData icon, String text) {
+  Widget _specPill(IconData icon, String text, {bool isMono = false}) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
@@ -193,28 +200,13 @@ class CatalogScreen extends ConsumerWidget {
         children: [
           Icon(icon, size: 14, color: Colors.grey[700]),
           const SizedBox(width: 4),
-          Text(text, style: TextStyle(fontSize: 11, color: Colors.grey[800])),
+          Text(
+            text,
+            style: isMono
+                ? AfosTypography.odometer.copyWith(fontSize: 11)
+                : TextStyle(fontSize: 11, color: Colors.grey[800]),
+          ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildStatusBadge(String status, AppLocalizations l10n) {
-    final isAvailable = status == 'AVAILABLE';
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-      decoration: BoxDecoration(
-        color: isAvailable ? Colors.green.shade50 : Colors.amber.shade50,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: isAvailable ? Colors.green.shade300 : Colors.amber.shade300),
-      ),
-      child: Text(
-        isAvailable ? l10n.statusAvailable : (status == 'ON_RENTAL' ? l10n.statusOnRental : l10n.statusBooked),
-        style: TextStyle(
-          color: isAvailable ? Colors.green.shade800 : Colors.amber.shade800,
-          fontSize: 11,
-          fontWeight: FontWeight.w600,
-        ),
       ),
     );
   }

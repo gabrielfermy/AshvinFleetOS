@@ -37,6 +37,7 @@ AFOS-app/
 │   │   ├── SYSTEM_ARCHITECTURE.md      # Flutter client & Supabase stack architecture
 │   │   └── DATABASE_SCHEMA.md          # PostgreSQL DDL, RLS, audit logs & ledger
 │   ├── 03-ui-ux/
+│   │   ├── BRAND_GUIDELINES.md         # Official Brand Suite, color tokens & typography
 │   │   └── SCREEN_FLOWS.md             # Adaptive screen flows for mobile & desktop
 │   └── 04-execution/
 │       └── ROADMAP_TASKS.md            # Phased roadmap milestones and execution tasks

@@ -5,10 +5,11 @@
 ---
 
 ## 1. UI/UX Design Principles
-1. **Adaptive & Responsive First**: Layouts dynamically adjust between smartphones (360–430 dp), tablets (600–900 dp), and desktop workstations (1280–1920 dp).
-2. **Mobile Field Efficiency**: Field staff screens feature thumb-friendly touch targets, minimal tap friction, high-contrast outdoor visibility, and immediate camera/signature interactions per vehicle unit.
-3. **High Information Density for Desktop**: Administrative interfaces for Owner and Admin prioritize productivity: horizontal Gantt fleet calendars, multi-unit B2B order builders, corporate billing reconciliations, and JSON audit log diff viewers.
-4. **Intuitive Multi-Language Switching**: Persistent language selector in the top-right header for customer portals (switching dynamically between Indonesian and English).
+1. **Design System & Brand Suite Fidelity**: All visual tokens, color swatches, typography (Plus Jakarta Sans/Inter & JetBrains Mono), and status badges MUST strictly conform to `docs/03-ui-ux/BRAND_GUIDELINES.md`.
+2. **Adaptive & Responsive First**: Layouts dynamically adjust between smartphones (360–430 dp), tablets (600–900 dp), and desktop workstations (1280–1920 dp).
+3. **Mobile Field Efficiency**: Field staff screens feature thumb-friendly touch targets, minimal tap friction, high-contrast outdoor visibility, and immediate camera/signature interactions per vehicle unit.
+4. **High Information Density for Desktop**: Administrative interfaces for Owner and Admin prioritize productivity: horizontal Gantt fleet calendars, multi-unit B2B order builders, corporate billing reconciliations, and JSON audit log diff viewers.
+5. **Intuitive Multi-Language Switching**: Persistent language selector in the top-right header for customer portals (switching dynamically between Indonesian and English).
 
 ---
 

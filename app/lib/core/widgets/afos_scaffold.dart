@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../localization/l10n/app_localizations.dart';
 import 'responsive_layout.dart';
+import 'afos_brand_mark.dart';
 import '../theme/app_theme.dart';
 import '../../features/auth/presentation/auth_controller.dart';
 import '../../features/auth/presentation/auth_modal.dart';
@@ -55,7 +56,7 @@ class AfosScaffold extends ConsumerWidget {
     if (isCompact) {
       return Scaffold(
         appBar: AppBar(
-          title: Text(l10n.appTitle),
+          title: const AfosBrandMark(size: 26, compact: true),
           actions: [
             _buildLocaleButton(),
             _buildAuthAction(context, ref, profile, l10n, compact: true),
@@ -178,41 +179,9 @@ class AfosScaffold extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: AppTheme.primaryNavy,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Icon(Icons.local_shipping, color: Colors.white, size: 20),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          l10n.appTitle,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w800,
-                            fontSize: 15,
-                            color: AppTheme.primaryNavy,
-                          ),
-                        ),
-                        const Text(
-                          'Yogyakarta Hub',
-                          style: TextStyle(fontSize: 11, color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+              child: AfosBrandMark(size: 30),
             ),
             const Divider(height: 1, color: Color(0xFFE2E8F0)),
             Expanded(
