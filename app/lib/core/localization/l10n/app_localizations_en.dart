@@ -61,10 +61,58 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authFullName => 'Full Name';
 
   @override
+  String get authFirstName => 'First Name';
+
+  @override
+  String get authLastName => 'Last Name';
+
+  @override
   String get authPhone => 'Phone Number';
 
   @override
   String get authNationality => 'Nationality';
+
+  @override
+  String get authConfirmPassword => 'Confirm Password';
+
+  @override
+  String get authPasswordMismatch => 'Passwords do not match';
+
+  @override
+  String get authPasswordTooShort => 'Password must be at least 6 characters';
+
+  @override
+  String get authOtpTitle => 'Verify Email Address';
+
+  @override
+  String get authOtpSubtitle =>
+      'Enter the 6-digit verification code sent to your email';
+
+  @override
+  String get authOtpCode => 'Verification Code (OTP)';
+
+  @override
+  String get authOtpSubmit => 'Verify & Complete';
+
+  @override
+  String get authOtpResend => 'Resend Code';
+
+  @override
+  String get authOtpInvalid => 'Please enter a valid 6-digit code';
+
+  @override
+  String get authOtpSimulatedHint =>
+      'Simulation mode: use code 123456 or any 6 digits';
+
+  @override
+  String get authCountryCode => 'Country Code';
+
+  @override
+  String get authPhoneInvalid => 'Please enter a valid phone number';
+
+  @override
+  String get authRegisterSuccess =>
+      'Account registered and verified successfully!';
 
   @override
   String get authQuickDemo => 'Quick Demo Logins';

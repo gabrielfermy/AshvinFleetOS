@@ -95,6 +95,30 @@ class AuthController extends StateNotifier<AuthStateData> {
     }
   }
 
+  Future<bool> verifyOtp({required String email, required String token}) async {
+    state = state.copyWith(isLoading: true, errorMessage: null);
+    try {
+      final ok = await _repo.verifyOtp(email: email, token: token);
+      if (ok) {
+        final p = await _repo.fetchCurrentProfile();
+        state = state.copyWith(isLoading: false, profile: p);
+        return true;
+      } else {
+        state = state.copyWith(isLoading: false, errorMessage: 'Invalid OTP code');
+        return false;
+      }
+    } catch (e) {
+      state = state.copyWith(isLoading: false, errorMessage: e.toString());
+      return false;
+    }
+  }
+
+  Future<void> resendOtp(String email) async {
+    try {
+      await _repo.resendOtp(email);
+    } catch (_) {}
+  }
+
   Future<void> signOut() async {
     await _repo.signOut();
     state = const AuthStateData(isLoading: false, profile: null);

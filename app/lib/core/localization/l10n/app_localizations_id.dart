@@ -62,10 +62,58 @@ class AppLocalizationsId extends AppLocalizations {
   String get authFullName => 'Nama Lengkap';
 
   @override
+  String get authFirstName => 'Nama Depan';
+
+  @override
+  String get authLastName => 'Nama Belakang';
+
+  @override
   String get authPhone => 'Nomor Telepon';
 
   @override
   String get authNationality => 'Kewarganegaraan';
+
+  @override
+  String get authConfirmPassword => 'Konfirmasi Kata Sandi';
+
+  @override
+  String get authPasswordMismatch => 'Kata sandi tidak cocok';
+
+  @override
+  String get authPasswordTooShort => 'Kata sandi minimal 6 karakter';
+
+  @override
+  String get authOtpTitle => 'Verifikasi Alamat Email';
+
+  @override
+  String get authOtpSubtitle =>
+      'Masukkan 6 digit kode verifikasi yang dikirim ke email Anda';
+
+  @override
+  String get authOtpCode => 'Kode Verifikasi (OTP)';
+
+  @override
+  String get authOtpSubmit => 'Verifikasi & Selesai';
+
+  @override
+  String get authOtpResend => 'Kirim Ulang Kode';
+
+  @override
+  String get authOtpInvalid => 'Silakan masukkan 6 digit kode yang valid';
+
+  @override
+  String get authOtpSimulatedHint =>
+      'Mode simulasi: gunakan kode 123456 atau 6 digit angka apa saja';
+
+  @override
+  String get authCountryCode => 'Kode Negara';
+
+  @override
+  String get authPhoneInvalid => 'Silakan masukkan nomor telepon yang valid';
+
+  @override
+  String get authRegisterSuccess =>
+      'Akun berhasil didaftarkan dan diverifikasi!';
 
   @override
   String get authQuickDemo => 'Login Cepat Demo';

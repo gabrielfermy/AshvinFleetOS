@@ -200,6 +200,18 @@ abstract class AppLocalizations {
   /// **'Full Name'**
   String get authFullName;
 
+  /// No description provided for @authFirstName.
+  ///
+  /// In en, this message translates to:
+  /// **'First Name'**
+  String get authFirstName;
+
+  /// No description provided for @authLastName.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Name'**
+  String get authLastName;
+
   /// No description provided for @authPhone.
   ///
   /// In en, this message translates to:
@@ -211,6 +223,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Nationality'**
   String get authNationality;
+
+  /// No description provided for @authConfirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Password'**
+  String get authConfirmPassword;
+
+  /// No description provided for @authPasswordMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get authPasswordMismatch;
+
+  /// No description provided for @authPasswordTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters'**
+  String get authPasswordTooShort;
+
+  /// No description provided for @authOtpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify Email Address'**
+  String get authOtpTitle;
+
+  /// No description provided for @authOtpSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the 6-digit verification code sent to your email'**
+  String get authOtpSubtitle;
+
+  /// No description provided for @authOtpCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification Code (OTP)'**
+  String get authOtpCode;
+
+  /// No description provided for @authOtpSubmit.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify & Complete'**
+  String get authOtpSubmit;
+
+  /// No description provided for @authOtpResend.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend Code'**
+  String get authOtpResend;
+
+  /// No description provided for @authOtpInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid 6-digit code'**
+  String get authOtpInvalid;
+
+  /// No description provided for @authOtpSimulatedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Simulation mode: use code 123456 or any 6 digits'**
+  String get authOtpSimulatedHint;
+
+  /// No description provided for @authCountryCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Country Code'**
+  String get authCountryCode;
+
+  /// No description provided for @authPhoneInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid phone number'**
+  String get authPhoneInvalid;
+
+  /// No description provided for @authRegisterSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Account registered and verified successfully!'**
+  String get authRegisterSuccess;
 
   /// No description provided for @authQuickDemo.
   ///

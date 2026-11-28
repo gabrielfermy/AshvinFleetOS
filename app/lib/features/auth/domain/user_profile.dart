@@ -59,4 +59,7 @@ class UserProfile {
   bool get isAdmin => role == 'ADMIN';
   bool get isOwner => role == 'OWNER';
   bool get isManagement => isAdmin || isOwner;
+
+  String get firstName => fullName.split(' ').first;
+  String get lastName => fullName.split(' ').length > 1 ? fullName.split(' ').sublist(1).join(' ') : '';
 }

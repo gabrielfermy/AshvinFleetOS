@@ -21,6 +21,8 @@ void main() {
 
       expect(profile.id, 'test-uuid-123');
       expect(profile.fullName, 'Budi Santoso');
+      expect(profile.firstName, 'Budi');
+      expect(profile.lastName, 'Santoso');
       expect(profile.role, 'CUSTOMER');
       expect(profile.isCustomer, isTrue);
       expect(profile.isManagement, isFalse);
