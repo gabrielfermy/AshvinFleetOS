@@ -15,17 +15,42 @@ class SupabaseService {
     );
   }
 
-  SupabaseClient get client => Supabase.instance.client;
-  User? get currentUser => client.auth.currentUser;
+  bool get isInitialized {
+    try {
+      return Supabase.instance.client != null;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  SupabaseClient? get clientOrNull {
+    try {
+      return Supabase.instance.client;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  SupabaseClient get client {
+    final c = clientOrNull;
+    if (c == null) {
+      throw StateError('Supabase has not been initialized yet.');
+    }
+    return c;
+  }
+
+  User? get currentUser => clientOrNull?.auth.currentUser;
   bool get isAuthenticated => currentUser != null;
 
   Future<String?> getCurrentUserRole() async {
-    if (currentUser == null) return null;
+    final user = currentUser;
+    final c = clientOrNull;
+    if (user == null || c == null) return null;
     try {
-      final res = await client
+      final res = await c
           .from('user_profiles')
           .select('role')
-          .eq('id', currentUser!.id)
+          .eq('id', user.id)
           .maybeSingle();
       return res?['role'] as String?;
     } catch (_) {

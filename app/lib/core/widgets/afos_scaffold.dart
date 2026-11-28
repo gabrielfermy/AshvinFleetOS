@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../localization/l10n/app_localizations.dart';
 import 'responsive_layout.dart';
 import '../theme/app_theme.dart';
+import '../../features/auth/presentation/auth_controller.dart';
+import '../../features/auth/presentation/auth_modal.dart';
 
-class AfosScaffold extends StatelessWidget {
+class AfosScaffold extends ConsumerWidget {
   final int selectedIndex;
   final ValueChanged<int> onDestinationSelected;
   final Widget body;
@@ -20,9 +23,11 @@ class AfosScaffold extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final isCompact = ResponsiveLayout.getDeviceType(context) == DeviceScreenType.compact;
+    final authState = ref.watch(authControllerProvider);
+    final profile = authState.profile;
 
     final navDestinations = [
       NavigationDestination(
@@ -53,6 +58,7 @@ class AfosScaffold extends StatelessWidget {
           title: Text(l10n.appTitle),
           actions: [
             _buildLocaleButton(),
+            _buildAuthAction(context, ref, profile, l10n, compact: true),
           ],
         ),
         body: body,
@@ -67,7 +73,7 @@ class AfosScaffold extends StatelessWidget {
     return Scaffold(
       body: Row(
         children: [
-          _buildDesktopSidebar(context, l10n),
+          _buildDesktopSidebar(context, ref, l10n, profile),
           const VerticalDivider(width: 1, thickness: 1, color: Color(0xFFE2E8F0)),
           Expanded(
             child: Scaffold(
@@ -75,12 +81,8 @@ class AfosScaffold extends StatelessWidget {
                 title: Text(navDestinations[selectedIndex].label),
                 actions: [
                   _buildLocaleButton(),
-                  const SizedBox(width: 12),
-                  const CircleAvatar(
-                    radius: 16,
-                    backgroundColor: AppTheme.primaryNavy,
-                    child: Icon(Icons.person, size: 18, color: Colors.white),
-                  ),
+                  const SizedBox(width: 8),
+                  _buildAuthAction(context, ref, profile, l10n, compact: false),
                   const SizedBox(width: 16),
                 ],
               ),
@@ -103,7 +105,72 @@ class AfosScaffold extends StatelessWidget {
     );
   }
 
-  Widget _buildDesktopSidebar(BuildContext context, AppLocalizations l10n) {
+  Widget _buildAuthAction(
+      BuildContext context, WidgetRef ref, dynamic profile, AppLocalizations l10n,
+      {required bool compact}) {
+    if (profile == null) {
+      return TextButton.icon(
+        onPressed: () => showDialog(context: context, builder: (_) => const AuthModal()),
+        icon: const Icon(Icons.login, size: 18),
+        label: Text(l10n.authSignIn),
+      );
+    }
+
+    return PopupMenuButton<String>(
+      tooltip: profile.fullName,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        child: Row(
+          children: [
+            CircleAvatar(
+              radius: 14,
+              backgroundColor: AppTheme.accentTeal,
+              child: Text(
+                profile.fullName.isNotEmpty ? profile.fullName[0].toUpperCase() : 'U',
+                style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
+              ),
+            ),
+            if (!compact) ...[
+              const SizedBox(width: 8),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(profile.fullName, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+                  Text(profile.role, style: const TextStyle(fontSize: 10, color: Colors.grey)),
+                ],
+              ),
+            ],
+          ],
+        ),
+      ),
+      itemBuilder: (ctx) => [
+        PopupMenuItem(
+          enabled: false,
+          child: Text('${l10n.authLoggedInAs}: ${profile.fullName} (${profile.role})'),
+        ),
+        const PopupMenuDivider(),
+        PopupMenuItem(
+          value: 'logout',
+          child: Row(
+            children: [
+              const Icon(Icons.logout, size: 18, color: Colors.red),
+              const SizedBox(width: 8),
+              Text(l10n.authSignOut, style: const TextStyle(color: Colors.red)),
+            ],
+          ),
+        ),
+      ],
+      onSelected: (val) {
+        if (val == 'logout') {
+          ref.read(authControllerProvider.notifier).signOut();
+        }
+      },
+    );
+  }
+
+  Widget _buildDesktopSidebar(
+      BuildContext context, WidgetRef ref, AppLocalizations l10n, dynamic profile) {
     return Material(
       color: Colors.white,
       child: SizedBox(
@@ -159,6 +226,34 @@ class AfosScaffold extends StatelessWidget {
                 ],
               ),
             ),
+            if (profile != null) ...[
+              const Divider(height: 1, color: Color(0xFFE2E8F0)),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 16,
+                      backgroundColor: AppTheme.primaryNavy,
+                      child: Text(
+                        profile.fullName.isNotEmpty ? profile.fullName[0].toUpperCase() : 'U',
+                        style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(profile.fullName, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold)),
+                          Text(profile.role, style: const TextStyle(fontSize: 10, color: AppTheme.accentTeal, fontWeight: FontWeight.w600)),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ],
         ),
       ),
@@ -170,15 +265,11 @@ class AfosScaffold extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
       child: Material(
-        color: isSelected ? AppTheme.primaryNavy.withOpacity(0.08) : Colors.transparent,
+        color: isSelected ? AppTheme.primaryNavy.withValues(alpha: 0.08) : Colors.transparent,
         borderRadius: BorderRadius.circular(8),
         clipBehavior: Clip.antiAlias,
         child: ListTile(
-          leading: Icon(
-            icon,
-            color: isSelected ? AppTheme.primaryNavy : Colors.grey[600],
-            size: 20,
-          ),
+          leading: Icon(icon, color: isSelected ? AppTheme.primaryNavy : Colors.grey[600], size: 20),
           title: Text(
             title,
             style: TextStyle(

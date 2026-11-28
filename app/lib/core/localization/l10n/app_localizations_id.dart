@@ -44,6 +44,73 @@ class AppLocalizationsId extends AppLocalizations {
   String get navSettings => 'Pengaturan';
 
   @override
+  String get authSignIn => 'Masuk';
+
+  @override
+  String get authSignUp => 'Daftar Akun';
+
+  @override
+  String get authSignOut => 'Keluar';
+
+  @override
+  String get authEmail => 'Alamat Email';
+
+  @override
+  String get authPassword => 'Kata Sandi';
+
+  @override
+  String get authFullName => 'Nama Lengkap';
+
+  @override
+  String get authPhone => 'Nomor Telepon';
+
+  @override
+  String get authNationality => 'Kewarganegaraan';
+
+  @override
+  String get authQuickDemo => 'Login Cepat Demo';
+
+  @override
+  String get authNoAccount => 'Belum punya akun? Daftar';
+
+  @override
+  String get authHaveAccount => 'Sudah punya akun? Masuk';
+
+  @override
+  String get authLoggedInAs => 'Masuk sebagai';
+
+  @override
+  String get catalogAll => 'Semua';
+
+  @override
+  String get catalogTransmission => 'Transmisi';
+
+  @override
+  String get catalogManual => 'Manual';
+
+  @override
+  String get catalogAutomatic => 'Matic';
+
+  @override
+  String get catalogCapacity => 'Kapasitas';
+
+  @override
+  String get catalogSeats => 'Kursi';
+
+  @override
+  String get catalogPerDay => '/ hari';
+
+  @override
+  String get catalogSelectPackage => 'Pilih Paket';
+
+  @override
+  String get catalogNoVehicles =>
+      'Tidak ada kendaraan tersedia untuk kriteria ini';
+
+  @override
+  String get catalogSearch => 'Cari armada berdasarkan merek atau model...';
+
+  @override
   String get roleCustomer => 'Pelanggan';
 
   @override
@@ -87,6 +154,49 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get packageFuelIncluded => 'BBM Dalam (Include)';
+
+  @override
+  String get bookingTitle => 'Reservasi Kendaraan';
+
+  @override
+  String get bookingStartDate => 'Tanggal & Waktu Mulai';
+
+  @override
+  String get bookingEndDate => 'Tanggal & Waktu Selesai';
+
+  @override
+  String get bookingDuration => 'Durasi';
+
+  @override
+  String get bookingIdCard => 'Nomor KTP / Paspor';
+
+  @override
+  String get bookingDriverLicense => 'Nomor SIM A / Internasional';
+
+  @override
+  String get bookingEmergencyContact => 'Nama & Nomor Kontak Darurat';
+
+  @override
+  String get bookingUploadIdCard => 'Unggah Foto KTP / Paspor';
+
+  @override
+  String get bookingUploadLicense => 'Unggah Foto SIM A';
+
+  @override
+  String get bookingDepositNotice =>
+      'Uang jaminan (deposit) ditahan saat serah terima dan dikembalikan penuh jika unit aman';
+
+  @override
+  String get bookingSubmitSuccess => 'Reservasi berhasil dikirim!';
+
+  @override
+  String get bookingSummary => 'Ringkasan Biaya Sewa';
+
+  @override
+  String get bookingTotalFee => 'Total Biaya Sewa';
+
+  @override
+  String get bookingDownPayment => 'Uang Muka (DP 30%)';
 
   @override
   String get btnBookNow => 'Pesan Sekarang';

@@ -43,6 +43,72 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navSettings => 'Settings';
 
   @override
+  String get authSignIn => 'Sign In';
+
+  @override
+  String get authSignUp => 'Register';
+
+  @override
+  String get authSignOut => 'Sign Out';
+
+  @override
+  String get authEmail => 'Email Address';
+
+  @override
+  String get authPassword => 'Password';
+
+  @override
+  String get authFullName => 'Full Name';
+
+  @override
+  String get authPhone => 'Phone Number';
+
+  @override
+  String get authNationality => 'Nationality';
+
+  @override
+  String get authQuickDemo => 'Quick Demo Logins';
+
+  @override
+  String get authNoAccount => 'Don\'t have an account? Register';
+
+  @override
+  String get authHaveAccount => 'Already have an account? Sign In';
+
+  @override
+  String get authLoggedInAs => 'Logged in as';
+
+  @override
+  String get catalogAll => 'All';
+
+  @override
+  String get catalogTransmission => 'Transmission';
+
+  @override
+  String get catalogManual => 'Manual';
+
+  @override
+  String get catalogAutomatic => 'Automatic';
+
+  @override
+  String get catalogCapacity => 'Capacity';
+
+  @override
+  String get catalogSeats => 'Seats';
+
+  @override
+  String get catalogPerDay => '/ day';
+
+  @override
+  String get catalogSelectPackage => 'Select Package';
+
+  @override
+  String get catalogNoVehicles => 'No vehicles found for the selected criteria';
+
+  @override
+  String get catalogSearch => 'Search vehicles by brand or model...';
+
+  @override
   String get roleCustomer => 'Customer';
 
   @override
@@ -86,6 +152,49 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get packageFuelIncluded => 'Fuel Included';
+
+  @override
+  String get bookingTitle => 'Reserve Vehicle';
+
+  @override
+  String get bookingStartDate => 'Start Date & Time';
+
+  @override
+  String get bookingEndDate => 'End Date & Time';
+
+  @override
+  String get bookingDuration => 'Duration';
+
+  @override
+  String get bookingIdCard => 'ID Card / Passport Number';
+
+  @override
+  String get bookingDriverLicense => 'Driver License (SIM A / IDP)';
+
+  @override
+  String get bookingEmergencyContact => 'Emergency Contact Name & Phone';
+
+  @override
+  String get bookingUploadIdCard => 'Upload ID Card / Passport';
+
+  @override
+  String get bookingUploadLicense => 'Upload Driver License';
+
+  @override
+  String get bookingDepositNotice =>
+      'Refundable security deposit is held upon handover';
+
+  @override
+  String get bookingSubmitSuccess => 'Booking submitted successfully!';
+
+  @override
+  String get bookingSummary => 'Rental Cost Summary';
+
+  @override
+  String get bookingTotalFee => 'Total Rental Fee';
+
+  @override
+  String get bookingDownPayment => 'Down Payment (30%)';
 
   @override
   String get btnBookNow => 'Book Now';
