@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/localization/l10n/app_localizations.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../domain/password_strength.dart';
 import 'auth_controller.dart';
 import 'widgets/auth_otp_step.dart';
+import 'widgets/password_strength_indicator.dart';
 import 'widgets/phone_input_field.dart';
 
 class AuthModal extends ConsumerStatefulWidget {
@@ -29,7 +31,20 @@ class _AuthModalState extends ConsumerState<AuthModal> {
   String _selectedDialCode = '+62';
 
   @override
+  void initState() {
+    super.initState();
+    _passCtrl.addListener(_onPasswordChanged);
+  }
+
+  void _onPasswordChanged() {
+    if (_isSignUp) {
+      setState(() {});
+    }
+  }
+
+  @override
   void dispose() {
+    _passCtrl.removeListener(_onPasswordChanged);
     _firstNameCtrl.dispose();
     _lastNameCtrl.dispose();
     _emailCtrl.dispose();
@@ -155,6 +170,9 @@ class _AuthModalState extends ConsumerState<AuthModal> {
           ),
         ),
         if (_isSignUp) ...[
+          PasswordStrengthIndicator(
+            result: PasswordStrengthValidator.evaluate(_passCtrl.text),
+          ),
           const SizedBox(height: 12),
           TextField(
             controller: _confirmPassCtrl,
@@ -219,8 +237,9 @@ class _AuthModalState extends ConsumerState<AuthModal> {
         setState(() => _formValidationError = l10n.authFirstName);
         return;
       }
-      if (_passCtrl.text.length < 6) {
-        setState(() => _formValidationError = l10n.authPasswordTooShort);
+      final strength = PasswordStrengthValidator.evaluate(_passCtrl.text);
+      if (!strength.isSecure) {
+        setState(() => _formValidationError = l10n.authPasswordInsecure);
         return;
       }
       if (_passCtrl.text != _confirmPassCtrl.text) {

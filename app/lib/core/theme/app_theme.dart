@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'afos_colors.dart';
 import 'afos_theme.dart';
-import 'afos_typography.dart';
 
 export 'afos_colors.dart';
 export 'afos_theme.dart';

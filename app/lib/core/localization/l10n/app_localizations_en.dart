@@ -79,7 +79,41 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authPasswordMismatch => 'Passwords do not match';
 
   @override
-  String get authPasswordTooShort => 'Password must be at least 6 characters';
+  String get authPasswordTooShort => 'Password must be at least 8 characters';
+
+  @override
+  String get authPasswordStrength => 'Password Strength';
+
+  @override
+  String get authPasswordWeak => 'Weak';
+
+  @override
+  String get authPasswordFair => 'Fair';
+
+  @override
+  String get authPasswordGood => 'Good';
+
+  @override
+  String get authPasswordStrong => 'Strong';
+
+  @override
+  String get authPasswordReqLength => 'At least 8 characters';
+
+  @override
+  String get authPasswordReqUppercase => 'Uppercase letter (A-Z)';
+
+  @override
+  String get authPasswordReqLowercase => 'Lowercase letter (a-z)';
+
+  @override
+  String get authPasswordReqNumber => 'Number (0-9)';
+
+  @override
+  String get authPasswordReqSpecial => 'Special symbol (!@#\$...)';
+
+  @override
+  String get authPasswordInsecure =>
+      'Password must satisfy all security requirements';
 
   @override
   String get authOtpTitle => 'Verify Email Address';

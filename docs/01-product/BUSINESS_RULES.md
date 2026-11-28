@@ -136,10 +136,16 @@ $$A_{\text{start}} < B_{\text{end}} \quad \text{AND} \quad A_{\text{end}} > B_{\
 - **Format Normalization**: All stored and transmitted phone numbers must be formatted to standard **E.164** (e.g., `+6281234567890`), stripping leading zeros from local inputs.
 - **WhatsApp Gateway Readiness**: The E.164 phone standard is mandatory to enable zero-transformation delivery to self-hosted WhatsApp gateways (such as WAHA) and official WhatsApp Business APIs.
 
-### 8.3. Password & Security Policies
-- **Minimum Length**: Minimum 6 alphanumeric characters.
-- **Confirmation Verification**: Frontend must enforce equality matching between `password` and `confirm_password` before submission.
-- **Visibility Control**: Passwords must offer obscured/plain text toggles on both fields.
+### 8.3. Industry Standard Password & Security Policies (NIST / OWASP)
+- **Minimum Length**: Minimum 8 characters (upgraded from 6 characters to align with NIST SP 800-63B / OWASP guidelines).
+- **Character Diversity Requirements**: Passwords must contain a combination of:
+  1. At least one uppercase letter (`A-Z`).
+  2. At least one lowercase letter (`a-z`).
+  3. At least one numerical digit (`0-9`).
+  4. At least one special symbol (`!@#$%^&*(),.?":{}|<>_+-=~[]\/`).
+- **Real-Time Visual Strength Meter**: Registration forms must provide interactive visual feedback (Weak, Fair, Good, Strong) with live criteria indicators.
+- **Confirmation Verification**: Frontend must enforce strict equality matching between `password` and `confirm_password` before allowing registration or password updates.
+- **Visibility Control**: Passwords must offer obscured/plain text toggles on both password and confirm password fields.
 
 ### 8.4. Two-Step Email OTP Verification
 - **Simulated OTP Flow**: On registration, users enter a 6-digit verification code. Until production SMTP is configured, local development accepts simulated OTP (`123456`) and routes real outbound verification emails to the local Mailpit instance (`http://localhost:54324`).
@@ -159,3 +165,4 @@ $$A_{\text{start}} < B_{\text{end}} \quad \text{AND} \quad A_{\text{end}} > B_{\
 | **ADL-005** | 2026-11-28 | Simulated Email OTP step with Mailpit (:54324) fallback and confirm password validation. | Section 8, `auth_otp_step.dart`, `auth_modal.dart` |
 | **ADL-006** | 2026-11-28 | Mandatory Decision Tracking Protocol: all decisions affecting rules must immediately update `AI_RULES.md` and `BUSINESS_RULES.md` to prevent AI hallucination. | `AI_RULES.md` Sec 1 & 6 |
 | **ADL-007** | 2026-11-28 | Zero-tolerance God File prevention, strict <500 line ceiling, and mandatory SRP/DRY structured refactoring protocol across all codebase layers. | `AI_RULES.md` Sec 4, `.agents/rules/` |
+| **ADL-008** | 2026-11-28 | Enforce NIST/OWASP industry standard password strength (min 8 chars, mixed case, numbers, symbols, and real-time visual meter). | Section 8.3, `password_strength.dart`, `password_strength_indicator.dart` |

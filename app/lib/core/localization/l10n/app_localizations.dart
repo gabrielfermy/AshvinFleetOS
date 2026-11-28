@@ -239,8 +239,74 @@ abstract class AppLocalizations {
   /// No description provided for @authPasswordTooShort.
   ///
   /// In en, this message translates to:
-  /// **'Password must be at least 6 characters'**
+  /// **'Password must be at least 8 characters'**
   String get authPasswordTooShort;
+
+  /// No description provided for @authPasswordStrength.
+  ///
+  /// In en, this message translates to:
+  /// **'Password Strength'**
+  String get authPasswordStrength;
+
+  /// No description provided for @authPasswordWeak.
+  ///
+  /// In en, this message translates to:
+  /// **'Weak'**
+  String get authPasswordWeak;
+
+  /// No description provided for @authPasswordFair.
+  ///
+  /// In en, this message translates to:
+  /// **'Fair'**
+  String get authPasswordFair;
+
+  /// No description provided for @authPasswordGood.
+  ///
+  /// In en, this message translates to:
+  /// **'Good'**
+  String get authPasswordGood;
+
+  /// No description provided for @authPasswordStrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Strong'**
+  String get authPasswordStrong;
+
+  /// No description provided for @authPasswordReqLength.
+  ///
+  /// In en, this message translates to:
+  /// **'At least 8 characters'**
+  String get authPasswordReqLength;
+
+  /// No description provided for @authPasswordReqUppercase.
+  ///
+  /// In en, this message translates to:
+  /// **'Uppercase letter (A-Z)'**
+  String get authPasswordReqUppercase;
+
+  /// No description provided for @authPasswordReqLowercase.
+  ///
+  /// In en, this message translates to:
+  /// **'Lowercase letter (a-z)'**
+  String get authPasswordReqLowercase;
+
+  /// No description provided for @authPasswordReqNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Number (0-9)'**
+  String get authPasswordReqNumber;
+
+  /// No description provided for @authPasswordReqSpecial.
+  ///
+  /// In en, this message translates to:
+  /// **'Special symbol (!@#\$...)'**
+  String get authPasswordReqSpecial;
+
+  /// No description provided for @authPasswordInsecure.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must satisfy all security requirements'**
+  String get authPasswordInsecure;
 
   /// No description provided for @authOtpTitle.
   ///

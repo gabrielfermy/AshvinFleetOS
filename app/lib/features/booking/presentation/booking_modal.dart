@@ -21,8 +21,8 @@ class BookingModal extends ConsumerStatefulWidget {
 
 class _BookingModalState extends ConsumerState<BookingModal> {
   RentalPackage? _selectedPackage;
-  DateTime _startDate = DateTime.now().add(const Duration(hours: 2));
-  DateTime _endDate = DateTime.now().add(const Duration(hours: 26));
+  final DateTime _startDate = DateTime.now().add(const Duration(hours: 2));
+  final DateTime _endDate = DateTime.now().add(const Duration(hours: 26));
   final _idCardCtrl = TextEditingController();
   final _licenseCtrl = TextEditingController();
   final _emergencyCtrl = TextEditingController();

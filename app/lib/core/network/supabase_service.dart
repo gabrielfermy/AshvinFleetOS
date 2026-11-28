@@ -17,7 +17,8 @@ class SupabaseService {
 
   bool get isInitialized {
     try {
-      return Supabase.instance.client != null;
+      Supabase.instance.client;
+      return true;
     } catch (_) {
       return false;
     }

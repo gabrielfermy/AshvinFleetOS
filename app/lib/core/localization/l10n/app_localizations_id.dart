@@ -80,7 +80,41 @@ class AppLocalizationsId extends AppLocalizations {
   String get authPasswordMismatch => 'Kata sandi tidak cocok';
 
   @override
-  String get authPasswordTooShort => 'Kata sandi minimal 6 karakter';
+  String get authPasswordTooShort => 'Kata sandi minimal 8 karakter';
+
+  @override
+  String get authPasswordStrength => 'Kekuatan Kata Sandi';
+
+  @override
+  String get authPasswordWeak => 'Lemah';
+
+  @override
+  String get authPasswordFair => 'Cukup';
+
+  @override
+  String get authPasswordGood => 'Baik';
+
+  @override
+  String get authPasswordStrong => 'Kuat';
+
+  @override
+  String get authPasswordReqLength => 'Minimal 8 karakter';
+
+  @override
+  String get authPasswordReqUppercase => 'Huruf besar (A-Z)';
+
+  @override
+  String get authPasswordReqLowercase => 'Huruf kecil (a-z)';
+
+  @override
+  String get authPasswordReqNumber => 'Angka (0-9)';
+
+  @override
+  String get authPasswordReqSpecial => 'Simbol khusus (!@#\$...)';
+
+  @override
+  String get authPasswordInsecure =>
+      'Kata sandi harus memenuhi semua kriteria keamanan';
 
   @override
   String get authOtpTitle => 'Verifikasi Alamat Email';

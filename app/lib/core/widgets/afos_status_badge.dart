@@ -142,7 +142,6 @@ class AfosStatusBadge extends StatelessWidget {
         );
 
       case BadgeType.generic:
-      default:
         return _ResolvedBadgeStyle(
           fg: AfosColors.charcoalInk,
           bg: AfosColors.slateMist,
